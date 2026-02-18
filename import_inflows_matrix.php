@@ -171,9 +171,23 @@ foreach ($spreadsheetMap as $year => $spreadsheetId) {
 
         if (!$values) continue;
 
-        $rowDate  = $values[1] ?? [];
-        $rowValue = $values[2] ?? [];
-        $colCount = max(count($rowDate), count($rowValue));
+        $rowHeader = $values[0] ?? [];
+        $rowDate   = $values[1] ?? [];
+        $rowValue1 = $values[2] ?? [];
+        $rowValue2 = $values[3] ?? [];
+
+        $isMioMama = trim((string)$sheet) === 'みおママ' || trim((string)$user) === 'みおママ';
+
+        $ver2StartCol = null;
+        $headerCount  = count($rowHeader);
+        for ($c = 0; $c < $headerCount; $c++) {
+            if (trim((string)($rowHeader[$c] ?? '')) === 'ver2') {
+                $ver2StartCol = $c;
+                break;
+            }
+        }
+
+        $colCount = max(count($rowDate), count($rowValue1), count($rowValue2));
 
         for ($c = 0; $c < $colCount; $c++) {
             $date = parse_date_cell($rowDate[$c] ?? '');
@@ -182,7 +196,12 @@ foreach ($spreadsheetMap as $year => $spreadsheetId) {
             // 年をスプシ年に合わせて上書き
             $date = $year . substr($date, 4);
 
-            $num = to_number($rowValue[$c] ?? '');
+            $num = to_number($rowValue1[$c] ?? '');
+
+            if ($isMioMama && $ver2StartCol !== null && $c >= $ver2StartCol) {
+                $num += to_number($rowValue2[$c] ?? '');
+            }
+
             if ($num <= 0) continue;
 
             $newItems[] = [
