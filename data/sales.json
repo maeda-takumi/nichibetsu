@@ -1,0 +1,66 @@
+{
+    "kind": "actors",
+    "updated_at": "2025-09-24T12:57:18+09:00",
+    "items": [
+        {
+            "id": "22fef6db-8c0c-4b91-ac6f-a4dfe4c9da4b",
+            "name": "米山元",
+            "kana": "",
+            "email": "",
+            "tags": [],
+            "active": true,
+            "note": "",
+            "aliases": []
+        },
+        {
+            "id": "db3be912-c8de-4833-a675-31155098d466",
+            "name": "内田克実",
+            "kana": "",
+            "email": "",
+            "tags": [],
+            "active": true,
+            "note": "",
+            "aliases": []
+        },
+        {
+            "id": "060606",
+            "name": "蝦名真人",
+            "kana": "",
+            "email": "",
+            "tags": [],
+            "active": true,
+            "note": "",
+            "aliases": []
+        },
+        {
+            "id": "07070707",
+            "name": "菊地祐介",
+            "kana": "",
+            "email": "",
+            "tags": [],
+            "active": true,
+            "note": "",
+            "aliases": []
+        },
+        {
+            "id": "08080808",
+            "name": "土屋峻輔",
+            "kana": "",
+            "email": "",
+            "tags": [],
+            "active": true,
+            "note": "",
+            "aliases": []
+        },
+        {
+            "id": "090909090",
+            "name": "金谷匠",
+            "kana": "",
+            "email": "",
+            "tags": [],
+            "active": true,
+            "note": "",
+            "aliases": []
+        }
+    ]
+}

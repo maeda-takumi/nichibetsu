@@ -1,0 +1,186 @@
+{
+    "kind": "actors",
+    "updated_at": "2025-09-29T19:14:34+09:00",
+    "items": [
+        {
+            "id": "41f7b90c-2721-4d4c-8c64-c237f2c78b0d",
+            "name": "米山元",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "ツバサ"
+            ],
+            "active": true,
+            "note": "",
+            "aliases": [
+                "米山副業"
+            ],
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "channel": "副業ハンターの神谷さん",
+            "img": "public\/img\/tsubasa2.jpg",
+            "channel_id": "UCsur6IHfIMF3O61tgLsS7JQ"
+        },
+        {
+            "id": "dc9ad7d4-d14d-4813-9e76-11c2c7101605",
+            "name": "しらほしなつみ",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "みおママ"
+            ],
+            "active": true,
+            "note": "",
+            "aliases": [
+                "美緒ママ"
+            ],
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "channel": "ずぼら主婦みおママのあたしンち副業",
+            "img": "public\/img\/miomama.jpg",
+            "channel_id": "UCyTadF39uysQ99I7TxVNPWQ"
+        },
+        {
+            "id": "f0ec818c-0c03-45f4-be82-933950b86bca",
+            "name": "しらほしなつみ",
+            "channel": "副業オタクみおパパのサクッと在宅ワーク",
+            "channel_id": "UCpKBKb3tCdg6NFh8bdhetzQ",
+            "active": true,
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "note": "",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "みおパパ"
+            ],
+            "aliases": [
+                "みおパパ"
+            ],
+            "img": "public\/img\/miopapa.jpg"
+        },
+        {
+            "id": "4f5950fd-4920-436e-8d3a-d7c5996e39e5",
+            "name": "菊地祐介",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "鈴木"
+            ],
+            "active": true,
+            "note": "",
+            "aliases": [
+                "菊地副業"
+            ],
+            "type": "副業",
+            "systems": "副業フロント,TikTokフロント,ChatGPTフロント",
+            "channel": "AI副業最前線マネーコンサルタント! by 鈴木宗久",
+            "img": "public\/img\/suzuki.jpg",
+            "channel_id": "UCUFAKwcutQ3WvQx4e0RE5tQ"
+        },
+        {
+            "id": "27720003-7e8a-46da-a5eb-861de80ae5ad",
+            "name": "坂口亮",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "湊"
+            ],
+            "active": true,
+            "note": "",
+            "aliases": [],
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "channel": "副業デジタル忍者湊",
+            "img": "public\/img\/minato.jpg",
+            "channel_id": "UCcLfcIIfnP-AOPlJ1ljPx_A"
+        },
+        {
+            "id": "303f0449-854f-4ed4-9d4c-a26034cbf402",
+            "name": "三木悠斗",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "すが"
+            ],
+            "active": true,
+            "note": "",
+            "aliases": [],
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "channel": "副業探偵ともや【AIで脱サラ】",
+            "img": "public\/img\/tomoya.jpg",
+            "channel_id": "UCU5f74ic7a8_0JHdkTGcIhw"
+        },
+        {
+            "id": "719e1982-6604-4214-8973-19bbce4ca665",
+            "name": "きっぺい",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "きっぺい"
+            ],
+            "active": true,
+            "note": "",
+            "aliases": [
+                "きっぺい副業"
+            ],
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "channel": "相馬カケル _ AI副業でスキル0から「選べる人生」を掴んだ男",
+            "img": "public\/img\/kakeru.jpg",
+            "channel_id": "UCYG6qaI5Chf0wYJAP0EiF_Q"
+        },
+        {
+            "id": "fe7ae9e9-d7b9-44b0-bd56-79e25388de15",
+            "name": "保毛陸",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "はると"
+            ],
+            "active": true,
+            "note": "",
+            "aliases": [],
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "channel": "三日坊主男子『はると』のほったらかし副業",
+            "img": "public\/img\/riku2.jpg",
+            "channel_id": "UC43FscF1gzzgS1H60vbiQPQ"
+        },
+        {
+            "id": "0cb9f721-307f-41ac-9425-26a811158f96",
+            "name": "園部梨絵",
+            "channel": "ぐーたら副業主婦のうみママ物語",
+            "channel_id": "UC3qp2jBZuLsitPtGz0nBscA",
+            "active": true,
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "note": "",
+            "kana": "",
+            "email": "",
+            "tags": [
+                "うみママ"
+            ],
+            "aliases": [
+                "うみママ"
+            ],
+            "img": "public\/img\/umimama.jpg"
+        },
+        {
+            "id": "ad6a9078-f2e1-41fc-b51a-7ce4992f8bd9",
+            "name": "全体集計",
+            "channel": "※実装途中",
+            "channel_id": "",
+            "active": true,
+            "type": "副業",
+            "systems": "ChatGPTフロント,Instagramフロント,動画編集フロント,TikTokフロント,副業フロント,副業ウェブフリフロント",
+            "note": "",
+            "kana": "",
+            "email": "",
+            "tags": [],
+            "aliases": [],
+            "img": "public\/img\/all.png"
+        }
+    ]
+}

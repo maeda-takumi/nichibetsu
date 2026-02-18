@@ -1,0 +1,10 @@
+@"
+# secrets / tokens (絶対Gitに入れない)
+secrets/
+cache/
+outh/**/token.json
+outh/**/client_secret.json
+**/*service_account*.json
+**/*oauth*.json
+.env
+"@ | Out-File -Encoding utf8 .gitignore
