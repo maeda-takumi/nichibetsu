@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function fmt(type, x) {
       // 必要なら toFixed(1) にして統一
-      if (type === 'pct') return (x >= 0 ? '+' : '') + x.toFixed(2) + '%';
+      if (type === 'pct') return (x >= 0 ? '+' : '') + x.toFixed(1) + '%';
       if (type === 'yen') return (x >= 0 ? '+' : '-') + '¥' + Math.abs(Math.round(x)).toLocaleString();
       return (x >= 0 ? '+' : '') + Math.round(x).toLocaleString();
     }

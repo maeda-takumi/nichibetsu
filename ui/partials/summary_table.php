@@ -36,6 +36,8 @@ $__totals_by_label = [];
           $isViews      = ($row === '総再生回数');
           $isImpr       = ($row === 'インプレッション数');
           $isInflows    = ($row === '流入数');
+          $isInflowRate = ($row === '流入比率');
+          $isViewPerIn  = ($row === '1流入再生');
           $isChosei     = ($row === '調整済み');
           $isDenwaWait  = ($row === '電話対応待ち');
           $isDenwaLost  = ($row === '電話前失注');
@@ -45,7 +47,7 @@ $__totals_by_label = [];
           $isNyukinAmt  = ($row === '入金額');
           $isSeiRate    = ($row === 'セールス成約率');
         ?>
-        <tr data-type="<?= $row==='セールス成約率' ? 'pct' : ($row==='入金額' ? 'yen' : 'num') ?>">
+        <tr data-type="<?= ($row==='セールス成約率' || $row==='流入比率') ? 'pct' : ($row==='入金額' ? 'yen' : 'num') ?>">
           <th class="label-col" data-first="<?= mb_substr($row, 0, 1) ?>">
             <span class="label-span"><?= htmlspecialchars($row) ?></span>
             <?php
@@ -55,6 +57,8 @@ $__totals_by_label = [];
                 elseif ($isViews) $tooltipText = 'YoutubeAnalyticsから取得';
                 elseif ($isImpr) $tooltipText = 'YoutubeAnalyticsから取得';
                 elseif ($isInflows) $tooltipText = 'Youtube分析シートから抽出';
+                elseif ($isInflowRate) $tooltipText = '流入数÷総再生回数（％）';
+                elseif ($isViewPerIn) $tooltipText = '1流入を得るのに必要な再生回数';
                 elseif ($isChosei) { $tooltipText = 'LINE登録日で抽出'; $class = 'cell-orange'; }
                 elseif ($isDenwaWait) {$tooltipText = 'LINE登録日で抽出';$class = 'cell-red';}
                 elseif ($isDenwaLost) {$tooltipText = 'LINE登録日で抽出';$class = 'cell-purple';}
@@ -74,10 +78,30 @@ $__totals_by_label = [];
             $rowTotal = 0;
             if ($isSeiRate) {
               // 期間合計でレート算出（%）
-              $sum = sales_rate_total($seiyakuByDay, $taiouCountByDay, $actorsById, $aid, $mdef['ym'], $days);
+              $sumSeiyaku = 0;
+              $sumTaiou = 0;
+              for ($d=1; $d<=$days; $d++) {
+                $sumSeiyaku += seiyaku_get($seiyakuByDay, $actorsById, $aid, $mdef['ym'], $d);
+                $sumTaiou += taiou_get($taiouCountByDay, $actorsById, $aid, $mdef['ym'], $d);
+              }
+              $sum = $sumTaiou > 0 ? ($sumSeiyaku / $sumTaiou) * 100 : 0;
+            } elseif ($isInflowRate) {
+              $viewTotal = (int)($__totals_by_label['総再生回数'] ?? 0);
+              $inflowTotal = (int)($__totals_by_label['流入数'] ?? 0);
+              $sum = ($viewTotal > 0) ? ($inflowTotal / $viewTotal * 100) : 0;
+            } elseif ($isViewPerIn) {
+              $viewTotal = (int)($__totals_by_label['総再生回数'] ?? 0);
+              $inflowTotal = (int)($__totals_by_label['流入数'] ?? 0);
+              $sum = ($inflowTotal > 0) ? round($viewTotal / $inflowTotal) : 0;
             } elseif (!$isDiff && ($isWatchHours || $isViews || $isImpr || $isInflows || $isChosei || $isDenwaWait || $isDenwaLost || $isTaiou || $isSeiyaku || $isNyukinCnt || $isNyukinAmt)) {
               for ($d=1; $d<=$days; $d++) {
                 if      ($isWatchHours)   $sum += watch_hours_get($watchByDay, $aid, $mdef['ym'], $d);
+                elseif  ($isViews) {
+                  $getvalue = watch_views_get($watchByDay, $aid, $mdef['ym'], $d);
+                  $sum += $getvalue;
+                  $rowTotal += (int)$getvalue;
+                  $__totals_by_label['総再生回数'] = $rowTotal;
+                }
                 elseif  ($isViews)        $sum += watch_views_get($watchByDay, $aid, $mdef['ym'], $d);
                 elseif  ($isImpr)         $sum += watch_impressions_get($watchByDay, $aid, $mdef['ym'], $d);
                 elseif  ($isInflows){
@@ -120,9 +144,9 @@ $__totals_by_label = [];
                     $__totals_by_label["電話前失注"] = $rowTotal;
                   }
                 }
-                elseif  ($isTaiou)        $sum += chosei_get($taiouCountByDay , $actorsById, $aid, $mdef['ym'], $d);
-                elseif  ($isSeiyaku)      $sum += chosei_get($seiyakuByDay,    $actorsById, $aid, $mdef['ym'], $d);
-                elseif  ($isNyukinCnt)    $sum += chosei_get($nyukinCountByDay,$actorsById, $aid, $mdef['ym'], $d);
+                elseif  ($isTaiou)        $sum += taiou_get($taiouCountByDay, $actorsById, $aid, $mdef['ym'], $d);
+                elseif  ($isSeiyaku)      $sum += seiyaku_get($seiyakuByDay, $actorsById, $aid, $mdef['ym'], $d);
+                elseif  ($isNyukinCnt)    $sum += nyukin_count_get($nyukinCountByDay, $actorsById, $aid, $mdef['ym'], $d);
                 elseif  ($isNyukinAmt)    $sum += nyukin_amount_get($nyukinAmountByDay, $actorsById, $aid, $mdef['ym'], $d);
               }
             }
@@ -130,7 +154,12 @@ $__totals_by_label = [];
             // 表示テキスト（合計）
             if ($isSeiRate) {
               $sumText = number_format($sum, 2) . '%';
+            } elseif ($isInflowRate) {
+              $sumText = number_format((float)$sum, 1) . '%';
+            } elseif ($isViewPerIn) {
+              $sumText = number_format((int)$sum);
             } elseif ($isNyukinAmt) {
+                $text = number_format($v, 2) . '%';
               $sumText = '¥' . number_format((int)$sum);
             } elseif ($isWatchHours) {
               $sumText = number_format((float)$sum, 1);
@@ -188,8 +217,20 @@ $__totals_by_label = [];
               if ($isDiff) {
                 $v = 0; $text = '0';
               } elseif ($isSeiRate) {
-                $v = sales_rate_get($seiyakuByDay, $taiouCountByDay, $actorsById, $aid, $mdef['ym'], $d);
+                $daySeiyaku = seiyaku_get($seiyakuByDay, $actorsById, $aid, $mdef['ym'], $d);
+                $dayTaiou = taiou_get($taiouCountByDay, $actorsById, $aid, $mdef['ym'], $d);
+                $v = $dayTaiou > 0 ? ($daySeiyaku / $dayTaiou) * 100 : 0;
                 $text = number_format($v, 2) . '%';
+              } elseif ($isInflowRate) {
+                $views = watch_views_get($watchByDay, $aid, $mdef['ym'], $d);
+                $inflows = inflow_get($inflowByDay, $actorsById, $aid, $mdef['ym'], $d);
+                $v = ($views > 0) ? ($inflows / $views * 100) : 0;
+                $text = number_format((float)$v, 1) . '%';
+              } elseif ($isViewPerIn) {
+                $views = watch_views_get($watchByDay, $aid, $mdef['ym'], $d);
+                $inflows = inflow_get($inflowByDay, $actorsById, $aid, $mdef['ym'], $d);
+                $v = ($inflows > 0) ? round($views / $inflows) : 0;
+                $text = number_format((int)$v);
               } elseif ($isNyukinAmt) {
                 $v = nyukin_amount_get($nyukinAmountByDay, $actorsById, $aid, $mdef['ym'], $d);
                 $text = '¥'.number_format((int)$v);
